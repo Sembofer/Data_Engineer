@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 Before executing the queries, you need to set up the database with docker
 ```
-docker run -d --name challenge_de -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -e POSTGRES_DB=challenge_db postgres
+docker run -d --name arkon_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -e POSTGRES_DB=arkon_db postgres
 ```
 Para tener la base de datos actualizada, ejecuta el siguiente comando
 ```

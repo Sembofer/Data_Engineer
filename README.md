@@ -12,12 +12,13 @@ pip install -r requirements.txt
 ```
 ## Preparar la Base de Datos
 
-Before executing the queries, you need to set up the database with docker
+Antes de ejecutar los querys, necesitamos fijar una base de datos con docker
 ```
 docker run -d --name arkon_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -e POSTGRES_DB=arkon_db postgres
 ```
-Para tener la base de datos actualizada, ejecuta el siguiente comando
+Para tener la base de datos, inicia el proceso ejecutando los siguientes comandos
 ```
+cd pipeline
 python main.py
 ```
 

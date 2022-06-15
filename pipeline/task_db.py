@@ -1,5 +1,4 @@
-from cfg import SQL_DIR
-from cfg import DB_CONNSTR
+from cfg import SQL_DIR, DB_CONNSTR
 from conn_db import DB_connection
 
 

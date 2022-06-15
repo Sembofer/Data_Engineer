@@ -1,0 +1,1 @@
+SELECT DISTINCT(alcaldia_id) FROM ubicaciones

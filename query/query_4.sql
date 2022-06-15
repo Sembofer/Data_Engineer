@@ -1,0 +1,1 @@
+SELECT ubi.id FROM ubicaciones ubi

@@ -1,0 +1,1 @@
+SELECT DISTINCT(id) FROM ubicaciones WHERE vehicle_current_status = 1

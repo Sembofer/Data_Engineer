@@ -1,0 +1,1 @@
+SELECT nomgeo FROM alcaldias alc INNER JOIN ubicaciones ubi ON alc.id = ubi.alcaldia_id

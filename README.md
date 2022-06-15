@@ -23,7 +23,7 @@ python main.py
 
 Ejecute el siguiente comando para obtener la API Rest
 ```
-python app.py --activity {number}
+python app.py
 ```
 
 ### Consulta de la información almacenada

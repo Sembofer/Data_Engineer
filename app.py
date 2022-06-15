@@ -6,8 +6,9 @@ app = Flask(__name__)
 
 @app.route('/tasks', methods = ['POST'])
 def task_query():
-    num = request.json['activity']
-    return query(num)
+    activity = request.json['activity']
+    data = request.json['id']
+    return query(activity, data)
 
 if __name__  == '__main__':
     app.run(debug=True)

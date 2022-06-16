@@ -48,8 +48,8 @@ Para los requerimientos 1 y 3:
     "id" : ""
 }
 ```
-si bien, para los requerimientos 1 y 3, en la llave "id" puede poner cualquier cosa sin afectar la consulta.
+si bien, para los requerimientos 1 y 3, en la clave "id" puede poner cualquier cosa sin afectar la consulta.
 
 ### Extras
--[] Implementar el API usando GraphQL
--[] Las configuraciones necesarias para desplegar el servicio en kubernetes
+- [ ] Implementar el API usando GraphQL.
+- [ ] Las configuraciones necesarias para desplegar el servicio en kubernetes.

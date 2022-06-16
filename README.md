@@ -59,6 +59,6 @@ Puede acceder a la base de datos ejecutando
 docker exec -it arkon_data psql -U postgres
 ```
 
-### Extras
+## Extras
 - [ ] Implementar el API usando GraphQL.
 - [ ] Las configuraciones necesarias para desplegar el servicio en kubernetes.

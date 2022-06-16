@@ -1,3 +1,4 @@
+from turtle import distance
 import requests
 import pandas as pd
 from sqlalchemy import create_engine
@@ -14,8 +15,6 @@ class Stackoverflow:
 
         Args:
             URL (dict): diccionario que contiene las dos URL correspondientes
-
-            ENGINE (str): cadena de la conexión a Postgres
         """
         for clave in URL:
             self.URL = URL[clave]
@@ -40,18 +39,35 @@ class Stackoverflow:
         #considerando la distancia mínima de la ubicación de metrobus con la alcaldía
         self.alcaldia_id_list =[]
         for i in self.ubicaciones_df.index:
-            self.dist = []
-            self.numAlcaldias = len(self.alcaldia_df.id) -1
-            for index in range(self.numAlcaldias):
-                self.distan = (self.ubicaciones_df['position_latitude'][i] - self.alcaldia_df.position_latitude[index])**2 + (self.ubicaciones_df['position_longitude'][i] - self.alcaldia_df.position_longitude[index])**2
+            self.dist = []      # Lista de las distancias de dada ubicacion con cada una de las alcaldias
+            self.x = self.ubicaciones_df.position_latitude[i]   # latitud de la ubicacion
+            self.y = self.ubicaciones_df.position_longitude[i]  # longitud de la ubicacion
+            self.totalAlcaldias = len(self.alcaldia_df.id) -1
+            for index in range(self.totalAlcaldias):
+                self.alcaldia_x = self.alcaldia_df.position_latitude[index] # latitud de la alcaldia
+                self.alcaldia_y =self.alcaldia_df.position_longitude[index] # longitud de la alcaldia
+
+                #Se calculan las distancias
+                self.distan = (self.x - self.alcaldia_x)**2 + (self.y - self.alcaldia_y)**2
                 self.dist.append(self.distan)
-            self.alcaldia_id_list.append(self.alcaldia_df.iloc[self.dist.index(min(self.dist)), 1])
+
+            # Seleccionar la minima distancia y busca dicha alcaldia mediante el indice
+            self.minimaDistancia = min(self.dist) # toma la minima distancia de las 16
+            self.indiceMinimaDistancia = self.dist.index(self.minimaDistancia) # toma el indice
+            self.id_alcaldia_i = self.alcaldia_df.iloc[self.indiceMinimaDistancia, 1]   #guarda el id de esa minima distancia
+
+            #Guarda el id de la alcaldia en la lista
+            self.alcaldia_id_list.append(self.id_alcaldia_i)
+
         #Se agrega la columna "alcaldia_id" de acuerdo a cada ubicación
         self.ubicaciones_df = self.ubicaciones_df.assign(alcaldia_id = self.alcaldia_id_list)
 
 
     def load_data(self, ENGINE):
-        """Toma los dataframes procesados y los guarda en tablas dentro de la base de datos
+        """Guarda los dataframes en la base de datos como tablas
+
+        Args:
+            ENGINE (str): Credencial para el motor de la base de datos
         """
         self.engine = create_engine(ENGINE)
         self.alcaldia_df.to_sql('alcaldias', con = self.engine, if_exists= 'replace')

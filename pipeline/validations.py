@@ -12,6 +12,7 @@ def valid_data(number, data):
                 return True
             else:
                 return False
+        return True
     else:
         return False
 

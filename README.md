@@ -29,7 +29,7 @@ python app.py
 ```
 
 ### Consulta de la información almacenada
-Para responder a los requerimientos (1,2,3,4) consuma el servicio mediante un método POST y con la URL generada. A continuación se describe la estructura del json para el consumo.
+Para responder a los requerimientos (1,2,3,4) consuma el servicio mediante un método POST y con la URL generada, el servidor espera que el formato se envíen como json. A continuación se describe la estructura del json para el consumo.
 
 Para los requerimientos 2 y 4:
 ```
@@ -54,3 +54,7 @@ Para los requerimientos 1 y 3:
 }
 ```
 si bien, para los requerimientos 1 y 3, en la llave "id" puede poner cualquier cosa sin afectar la consulta.
+
+### Extras
+-[] Implementar el API usando GraphQL
+-[] Las configuraciones necesarias para desplegar el servicio en kubernetes

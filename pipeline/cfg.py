@@ -1,7 +1,7 @@
 from pathlib import Path
 
 ROOT_DIR = Path().resolve().parent
-SQL_DIR = ROOT_DIR / "PruebaRUN/pipeline/query"
+SQL_DIR = ROOT_DIR / "pipeline/query"
 
 
 USER = 'postgres'

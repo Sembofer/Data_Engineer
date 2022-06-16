@@ -10,7 +10,7 @@ Stackoverflow(URL).load_data(DB_CONNSTR)
 
 app = Flask(__name__)
 
-@app.route('/tasks', methods = ['POST'])
+@app.route('/', methods = ['POST'])
 def query():
     requirement = request.json['requirement']
     data = request.json['id']

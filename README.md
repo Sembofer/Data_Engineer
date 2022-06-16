@@ -17,15 +17,10 @@ Antes de ejecutar el servicio necesita levantar una base de datos con docker
 docker run -d --name arkon_data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -e POSTGRES_DB=arkon_db postgres
 ```
 
-Para tener la base de datos, inicia el proceso ejecutando los siguientes comandos
+Para tener la base de datos y el recurso API inicia el proceso ejecutando los siguientes comandos
 ```
 cd pipeline
 python main.py
-```
-
-Ejecute el siguiente comando para obtener la API Rest
-```
-python app.py
 ```
 
 ### Consulta de la información almacenada

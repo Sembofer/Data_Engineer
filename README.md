@@ -10,21 +10,22 @@ virtualenv env
 source env/bin/activate
 pip install -r requirements.txt
 ```
-## Preparar la Base de Datos
 
+### Preparar la Base de Datos
 Antes de ejecutar el servicio necesita levantar una base de datos con docker
 ```
 docker run -d --name arkon_data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -e POSTGRES_DB=arkon_db postgres
 ```
 
-Para tener la base de datos y el recurso API inicia el proceso ejecutando los siguientes comandos
+## Servicio pipeline
+A continuación, con los siguientes comandos se extrae la información directa de los datos abiertos de la Ciudad de México y se obtiene el recurso API:
 ```
 cd pipeline
 python main.py
 ```
 
 ### Consulta de la información almacenada
-Para responder a los requerimientos (1,2,3,4) consuma el servicio mediante un método POST y con la URL generada, el servidor espera que el formato se envíen como json. A continuación se describe la estructura del json para el consumo.
+Para responder a los requerimientos (1,2,3,4) consuma el servicio mediante un método POST y con la URL generada, el servidor espera recibir un formato json. A continuación se describe la estructura del json para el consumo.
 
 Para los requerimientos 2 y 4:
 ```
@@ -48,7 +49,13 @@ Para los requerimientos 1 y 3:
     "id" : ""
 }
 ```
-si bien, para los requerimientos 1 y 3, en la clave "id" puede poner cualquier cosa sin afectar la consulta.
+Si bien, para los requerimientos 1 y 3, la clave "id" puede poner cualquier cosa sin afectar la consulta.
+
+#### Acceso a la base de datos
+Puede acceder a la base de datos ejecutando
+```
+docker exec -it arkon_data psql -U postgres
+```
 
 ### Extras
 - [ ] Implementar el API usando GraphQL.

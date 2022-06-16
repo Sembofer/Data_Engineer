@@ -20,7 +20,7 @@ docker run -d --name arkon_data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=p
 ```
 
 ## Servicio pipeline
-A continuación, con los siguientes comandos se extrae la información directa de los datos abiertos de la Ciudad de México y se obtiene el recurso API:
+A continuación, con los siguientes comandos se extrae la información directamente de los datos abiertos de la Ciudad de México y se obtiene el recurso API:
 ```
 cd pipeline
 python main.py

@@ -12,6 +12,11 @@ pip install -r requirements.txt
 ```
 ## Preparar la Base de Datos
 
+Antes de ejecutar el servicio necesita levantar una base de datos con docker
+```
+docker run -d --name arkon_data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -e POSTGRES_DB=arkon_db postgres
+```
+
 Para tener la base de datos, inicia el proceso ejecutando los siguientes comandos
 ```
 cd pipeline

@@ -1,4 +1,4 @@
-from validations import first_validation
+from validations import valid_format, valid_query
 from sqlalchemy import create_engine, null
 from sqlalchemy.sql import text
 import pandas as pd
@@ -13,5 +13,8 @@ class DB_connection:
         with self.engine.connect() as conn:
             with open(self.SQL_DIR / f"{sql_file}.sql") as q:
                 query = text(q.read())
-                rs = conn.execute(query, x= data).fetchall()
-        return first_validation(rs)
+                if valid_query(sql_file):
+                    rs = conn.execute(query, x= data).fetchall()
+                else:
+                    rs = conn.execute(query).fetchall()
+        return valid_format(rs)

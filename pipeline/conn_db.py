@@ -1,3 +1,4 @@
+from validations import first_validation
 from sqlalchemy import create_engine, null
 from sqlalchemy.sql import text
 import pandas as pd
@@ -12,12 +13,5 @@ class DB_connection:
         with self.engine.connect() as conn:
             with open(self.SQL_DIR / f"{sql_file}.sql") as q:
                 query = text(q.read())
-                if (sql_file == "query_1" or sql_file == "query_3"):
-                    rs = conn.execute(query).fetchall()
-                else:
-                    rs = conn.execute(query, x= data).fetchall()
-        resp = []
-        for tuple in rs:
-            for x in tuple:
-                resp.append(x)
-        return str(resp)
+                rs = conn.execute(query, x= data).fetchall()
+        return first_validation(rs)

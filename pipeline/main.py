@@ -1,15 +1,22 @@
-from cfg import DB_CONNSTR, URL
+from flask import Flask, request
 from etl_process import Stackoverflow
+from cfg import DB_CONNSTR, URL
+from task_db import task_query
 
-def extract_data():
-    Stackoverflow(URL, DB_CONNSTR)
+Stackoverflow(URL).load_data(DB_CONNSTR)
 
-def load_data():
-    Stackoverflow(URL, DB_CONNSTR).load()
 
-def setup_all():
-    extract_data()
-    load_data()
+
+
+app = Flask(__name__)
+
+@app.route('/tasks', methods = ['POST'])
+def query():
+    requirement = request.json['requirement']
+    data = request.json['id']
+    return task_query(requirement, data)
+
+
 
 if __name__ == "__main__":
-    setup_all()
+    app.run(debug=True)

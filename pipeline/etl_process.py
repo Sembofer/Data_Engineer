@@ -8,6 +8,15 @@ import numpy as np
 class Stackoverflow:
 
     def __init__(self, URL, ENGINE):
+        """Extrae los datos abiertos de las ubicaciones
+        y alcaldias del sistema de metrobus de la Ciudad de México.
+
+
+        Args:
+            URL (dict): diccionario que contiene las dos URL correspondientes
+
+            ENGINE (str): cadena de la conexión a Postgres
+        """
         for clave in URL:
             self.URL = URL[clave]
             self.response = requests.get(self.URL)
@@ -16,7 +25,9 @@ class Stackoverflow:
                 self.ubicaciones_df = pd.DataFrame(self.data['result']['records'])
             elif clave == 'URL_ALCALDIAS':
                 self.alcaldia_df = pd.DataFrame(self.data['result']['records'])
+
         self.engine = create_engine(ENGINE)
+
         #Se ordenan de forma ascendente los DataFrames "self.alcaldia_df" y "self.ubicaciones_df", mdeiante los campos "id" en ambos
         self.alcaldia_df = self.alcaldia_df.sort_values('id')
         self.ubicaciones_df = self.ubicaciones_df.sort_values('id')
@@ -42,10 +53,7 @@ class Stackoverflow:
 
 
     def load(self):
+        """Toma los dataframes procesados y los guarda en tablas dentro de la base de datos
+        """
         self.alcaldia_df.to_sql('alcaldias', con = self.engine, if_exists= 'replace')
         self.ubicaciones_df.to_sql('ubicaciones', con = self.engine, if_exists = 'replace')
-'''
-    def query(self):
-        query_1 = 'SELECT * FROM alcaldias AS alc INNER JOIN ubicaciones AS ubi ON alc.id = ubi.alcaldia_id'
-        return print(self.engine.execute(query_1).fetchall())
-'''

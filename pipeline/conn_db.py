@@ -9,7 +9,6 @@ class DB_connection:
         self.SQL_DIR = SQL_DIR
 
     def db_query(self, sql_file, data) -> pd.DataFrame:
-        resp = []
         with self.engine.connect() as conn:
             with open(self.SQL_DIR / f"{sql_file}.sql") as q:
                 query = text(q.read())
@@ -17,6 +16,7 @@ class DB_connection:
                     rs = conn.execute(query).fetchall()
                 else:
                     rs = conn.execute(query, x= data).fetchall()
+        resp = []
         for tuple in rs:
             for x in tuple:
                 resp.append(x)

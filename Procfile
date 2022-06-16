@@ -1,1 +1,0 @@
-wed: gunicorn app:app

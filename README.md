@@ -29,7 +29,7 @@ python main.py
 ```
 
 ### Consulta de la información almacenada
-Para responder a los requerimientos (1,2,3,4) consuma el servicio mediante un método POST y con la URL generada, el servidor espera recibir un formato json. A continuación se describe la estructura del json para el consumo.
+Para responder a los requerimientos (1,2,3,4) consuma el servicio mediante un método POST y con la URL generada, el servidor espera recibir un formato json (yo usé Postman para esta tarea). A continuación se describe la estructura del json para el consumo.
 
 Para los requerimientos 2 y 4:
 ```
